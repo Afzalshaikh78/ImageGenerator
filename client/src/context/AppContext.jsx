@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -30,7 +30,7 @@ const AppContextProvider = (props) => {
 
   const navigate = useNavigate();
 
-  const loadCreditsData = async () => {
+  const loadCreditsData = useCallback(async () => {
     try {
       const { data } = await axios.get(backendUrl + "/api/user/credits", {
         headers: { token },
@@ -44,7 +44,7 @@ const AppContextProvider = (props) => {
       console.log(error);
       toast.error(error.message);
     }
-  };
+  }, [backendUrl, token]);
 
   const generateImage = async (prompt) => {
     try {
@@ -72,7 +72,10 @@ const AppContextProvider = (props) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
-    setUser(null);
+      setUser(null);
+      setCredit(0)
+      setShowLogin(false)
+      navigate('/')
   };
 
   useEffect(() => {
