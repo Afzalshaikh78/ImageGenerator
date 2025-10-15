@@ -1,17 +1,3 @@
-// Copyright 2025 PREM
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
@@ -23,29 +9,32 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = [
-  "https://imagegenerator-client-7izk.onrender.com",
-  "http://localhost:3000",
-  "http://localhost:5173",
-];
+const CLIENT_URL =
+  process.env.CLIENT_URL || "https://imagegenerator-client-7izk.onrender.com";
 
+// CORS configuration
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or Postman)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
+  origin: [
+    CLIENT_URL,
+    "http://localhost:5173", // Vite dev
+    "http://localhost:3000", // Local testing
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "token", // Your custom header
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200,
 };
 
+// Apply CORS before routes
 app.use(cors(corsOptions));
+
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 await connectDB();
 
 app.use("/api/user", userRouter);
