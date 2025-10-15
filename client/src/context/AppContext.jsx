@@ -29,20 +29,25 @@ const AppContextProvider = (props) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const navigate = useNavigate()
+const loadCreditsData = async () => {
+  try {
+    const { data } = await axios.get(backendUrl + "/api/user/credits", {
+      headers: {
+        Authorization: `Bearer ${token}`, // 👈 use Authorization instead of token
+      },
+      withCredentials: true, // if you’re using cookies
+    });
 
-    const loadCreditsData = async () => {
-        try {
-            const {data} = await axios.get(backendUrl + '/api/user/credits', {headers: {token}})
-
-            if (data.success) {
-                setCredit(data.credits)
-                setUser(data.user)
-            }
-        } catch (error) {
-            console.log(error)
-            toast.error(error.message)
-        }
+    if (data.success) {
+      setCredit(data.credits);
+      setUser(data.user);
     }
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
 
     const generateImage = async (prompt) => {
         try {

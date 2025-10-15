@@ -18,42 +18,12 @@ import "dotenv/config";
 import connectDB from "./config/mongodb.js";
 import imageRouter from "./routes/imageRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-if (typeof window !== "undefined") {
-  const originalFetch = window.fetch;
-  window.fetch = function (url, options) {
-    if (typeof url === "string" && url.includes("adblock360.com")) {
-      return Promise.reject(new Error("Blocked"));
-    }
-    return originalFetch(url, options);
-  };
-}
+
 const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(express.json());
-const allowedOrigins = [
-  "https://imagegenerator-client-7izk.onrender.com",
-  "http://localhost:3000",
-  "http://localhost:5173",
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or Postman)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 await connectDB();
 
 app.use("/api/user", userRouter);
