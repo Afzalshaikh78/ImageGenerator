@@ -44,6 +44,15 @@ const registerUser = async (req, res) => {
       });
     }
 
+    const existingUser = await userModel.findOne({ email });
+
+    if (existingUser) {
+      return res.json({
+        success: false,
+        message: "User already exists",
+      });
+    }
+
     // hashing user password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
