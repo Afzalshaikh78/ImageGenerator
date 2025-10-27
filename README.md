@@ -38,7 +38,6 @@ Frontend Technologies
 
 ⚡ Vite - Fast build tool and development server
 
-💾 FileSaver.js - File download functionality
 
 Backend Technologies
 🟢 Node.js - JavaScript runtime environment
@@ -51,12 +50,8 @@ Backend Technologies
 
 🔧 CORS - Cross-Origin Resource Sharing middleware
 
-📤 Multer - File upload middleware
 
 AI & Cloud Services
-🤖 OpenAI DALL-E API - AI image generation
-
-🤗 Hugging Face API - Alternative AI models
 
 ☁️ Cloudinary - Image storage and optimization
 
@@ -74,9 +69,6 @@ Prerequisites
 Node.js (v14 or higher)
 
 MongoDB account (MongoDB Atlas recommended)
-
-OpenAI API Key or other AI service API 
-
 Cloudinary account for image storage
 
 Installation
@@ -145,12 +137,3 @@ Generate Image: Click "Generate Image" and wait for the AI to create your artwor
 Share with Community: Optionally share your creation with the community
 
 Download: Save the image to your device
-
-Exploring the Community
-Browse Gallery: View all community-shared images on the home page
-
-Search Images: Use the search bar to find specific prompts or authors
-
-Download Images: Click any image to download it
-
-Get Inspiration: Use existing prompts as inspiration for your own creations
