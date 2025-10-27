@@ -14,21 +14,8 @@ OpenAI
 🌟 Features
 🎭 AI Image Generation
 Text-to-Image: Convert descriptive text prompts into unique AI-generated images
+Download image in one click
 
-Multiple AI Models: Support for OpenAI DALL-E, Hugging Face Stable Diffusion, and more
-
-Custom Parameters: Adjust image size, quality, and aspect ratio
-
-Instant Generation: Fast processing and real-time image creation
-
-🌍 Community Platform
-Public Gallery: Browse and discover images created by the community
-
-Image Sharing: Share your creations with other users
-
-Search & Filter: Find images by prompt, author, or keywords
-
-Download Support: Save any image directly to your device
 
 🎨 User Experience
 Responsive Design: Seamless experience across desktop, tablet, and mobile
