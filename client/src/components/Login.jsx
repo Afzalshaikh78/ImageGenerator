@@ -132,7 +132,7 @@ const Login = () => {
           }`}
         >
           {loading
-            ? "Loading..."
+            ? "Logging in..."
             : state === "Login"
             ? "Login"
             : "Create Account"}
