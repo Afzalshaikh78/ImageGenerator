@@ -1,6 +1,6 @@
 # AI Image Generator - MERN Stack
 
-A full-stack AI-powered image generator built with the MERN Stack (MongoDB, Express.js, React.js, Node.js) that transforms text prompts into stunning AI-generated images. This application features a modern, community-driven platform for sharing and discovering creative AI art.
+A full-stack AI-powered image generator built with the MERN Stack (MongoDB, Express.js, React.js, Node.js) that transforms text prompts into stunning AI-generated images. This application features a modern, community-driven platform for sharing.
 
 Live_url : https://imagegenerator-client-7izk.onrender.com
 
